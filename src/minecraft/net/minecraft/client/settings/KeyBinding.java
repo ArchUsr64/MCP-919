@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Set;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.IntHashMap;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class KeyBinding implements Comparable<KeyBinding>
 {
+    private static final Logger logger = LogManager.getLogger();
     private static final List<KeyBinding> keybindArray = Lists.<KeyBinding>newArrayList();
     private static final IntHashMap<KeyBinding> hash = new IntHashMap();
     private static final Set<String> keybindSet = Sets.<String>newHashSet();
@@ -100,6 +103,8 @@ public class KeyBinding implements Comparable<KeyBinding>
      */
     public boolean isPressed()
     {
+    if (this.keyDescription == "key.togglePerspective")
+    logger.info(this);
         if (this.pressTime == 0)
         {
             return false;
